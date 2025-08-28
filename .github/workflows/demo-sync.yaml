@@ -9,7 +9,8 @@ jobs:
   sync-repository:
     runs-on: ubuntu-latest
     
-    steps:     
+    steps:
+      #synchro dépot sur console dso formation   
       - name: Sync with DSO
         run: |
           curl -v -X 'POST' \
