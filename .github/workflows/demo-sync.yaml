@@ -1,0 +1,22 @@
+name: DSO Repository Sync
+
+on:
+  push:
+    branches:
+      - '**'  # Déclenche sur tous les commits de toutes les branches
+
+jobs:
+  sync-repository:
+    runs-on: ubuntu-latest
+    
+    steps:     
+      - name: Sync with DSO
+        run: |
+          curl -v -X 'POST' \
+            "https://sync.formation-gateway.cpin.numerique-interieur.com/repositories/${{ vars.DSO_REPOSITORY_ID }}/sync" \
+            -H "x-dso-token: ${{ secrets.DSO_TOKEN }}" \
+            -H 'Content-Type: application/json' \
+            -d '{"syncAllBranches": true,"branchName": "main"}'
+        env:
+          DSO_TOKEN: ${{ secrets.DSO_TOKEN }}
+          DSO_REPOSITORY_ID: ${{ vars.DSO_REPOSITORY_ID }}
