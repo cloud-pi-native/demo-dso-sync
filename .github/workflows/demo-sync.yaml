@@ -3,7 +3,7 @@ name: DSO Repository Sync
 on:
   push:
     branches:
-      - '**'  # Déclenche sur tous les commits de toutes les branches
+      - '**' 
 
 jobs:
   sync-repository:
